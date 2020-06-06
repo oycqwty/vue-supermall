@@ -3,15 +3,24 @@
       <nav-bar class="home-nav">
         <div slot="center">购物街</div>
       </nav-bar>
+      <home-swiper :banners="banners"/>
+      <recommend-view :recommends="recommends"></recommend-view>      
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/common/navbar/NavBar' 
+import NavBar from 'components/common/navbar/NavBar' 
+import HomeSwiper from 'views/home/childComponents/HomeSwiper'
+import RecommendView from '@/views/home/childComponents/RecommendView'
+
+import {getHomeMultidata} from "network/home";
+
   export default {
     name: "Home",
     components: {
-      NavBar
+      NavBar,
+      HomeSwiper,
+      RecommendView
     },
     data() {
       return {
