@@ -52,6 +52,10 @@
       },
       finishPullUp() {
         this.scroll.finishPullUp()
+      },
+      refresh(){
+        console.log('zzz');
+        this.scroll && this.scroll.refresh();
       }
     }
   }
