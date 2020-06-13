@@ -41,10 +41,12 @@
         this.$emit('scroll', position)
       })
 
-      // 3.监听上拉事件
-      this.scroll.on('pullingUp', () => {
-        this.$emit('pullingUp')
-      })
+       // 3.监听scroll滚动到底部
+      if (this.pullUpLoad) {
+        this.scroll.on('pullingUp', () => {
+          this.$emit('pullingUp')
+        })
+      }
     },
     methods: {
       scrollTo(x, y, time=300) {
@@ -54,7 +56,7 @@
         this.scroll.finishPullUp()
       },
       refresh(){
-        console.log('zzz');
+        console.log('测试防抖次数');
         this.scroll && this.scroll.refresh();
       }
     }
