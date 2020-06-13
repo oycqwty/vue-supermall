@@ -68,7 +68,8 @@ export default {
       currentType: "pop", //默认显示流行数据
       isShowBackTop: false, //默认置顶按钮不显示
       tabControlHeight: 0,
-      isTabFixed: false //tabControl是否吸顶
+      isTabFixed: false, //tabControl是否吸顶
+      saveY:0,//离开位置信息
     };
   },
   created() {
@@ -101,7 +102,7 @@ export default {
         this.recommends = res.data.recommend.list;
       });
     },
-    loadMore() {
+    loadMore() { //scroll上拉监听事件
       this.getHomeGoods(this.currentType);
       this.$refs.scroll.scroll.refresh();
     },
@@ -134,7 +135,6 @@ export default {
       this.isShowBackTop = -position.y > 1000;
       //2.决定tabControl是否吸顶 v-bind class (position:fixed)
       this.isTabFixed = -position.y > this.tabControlHeight;
-      console.log(this.isTabFixed);
     },
     backClick() {
       this.$refs.scroll.scroll.scrollTo(0, 0, 500); //延时500ms
@@ -154,6 +154,15 @@ export default {
       console.log("选中的类型", this.currentType);
       return this.goods[this.currentType].list;
     }
+  },
+  activated(){  
+    //离开记录home页面位置消息，scroll将bug已解决
+    this.$refs.scroll.scrollTo(0,this.saveY,0);//迅速回到原来位置
+    this.$refs.scroll.refresh()
+  },
+  deactivated(){
+    this.saveY = this.$refs.scroll.scroll.y;
+    console.log('离开Y位置',this.saveY);
   }
 };
 </script>
