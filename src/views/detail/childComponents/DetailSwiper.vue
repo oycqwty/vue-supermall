@@ -25,13 +25,6 @@ export default {
   components:{
     Swiper, 
     SwiperItem
-  },
-  mounted(){
-    // debugger
-    // console.log(this.topImages);
-    setTimeout(()=>{      
-      console.log(this.topImages);
-    },5000)
   }
 }
 </script>

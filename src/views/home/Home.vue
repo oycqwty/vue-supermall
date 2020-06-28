@@ -159,6 +159,7 @@ export default {
     //离开记录home页面位置消息，scroll将bug已解决
     this.$refs.scroll.scrollTo(0,this.saveY,0);//迅速回到原来位置
     this.$refs.scroll.refresh()
+    console.log(this.saveY);
   },
   deactivated(){
     this.saveY = this.$refs.scroll.scroll.y;

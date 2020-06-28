@@ -56,7 +56,7 @@
         this.scroll.finishPullUp()
       },
       refresh(){
-        console.log('测试防抖次数');
+        // console.log('测试防抖次数');图片加载计算高度
         this.scroll && this.scroll.refresh();
       }
     }
