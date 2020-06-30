@@ -12,9 +12,11 @@ export default {
 </script>
 <style scoped>
   .nav-bar{
+    z-index: 9;
     display: flex;
     height: 44px;
     line-height: 44px;
+    background-color: #fff;
     text-align: center;    
   }
   .left,.right{

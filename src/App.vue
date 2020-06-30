@@ -9,10 +9,12 @@
 
 <script>
 import MainTabBar from 'components/content/mainTabbar/MainTabBar'
+import Detail from 'views/detail/Detail'
 export default {
   name: 'App',
   components: {
-    MainTabBar
+    MainTabBar,
+    Detail
   }
 }
 </script>

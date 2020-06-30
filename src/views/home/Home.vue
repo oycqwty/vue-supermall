@@ -23,7 +23,7 @@
       <recommend-view :recommends="recommends"></recommend-view>
       <featrue-view></featrue-view>
       <tab-control ref="tabcontrol2" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
-      <goods-list :goods="showGoods"></goods-list>
+      <goods-list :goods="showGoods"  ></goods-list>
       <!-- 首页数据的展示 -->
     </scroll>
 
@@ -127,9 +127,12 @@ export default {
           this.currentType = "sell";
           break;
       }
+      // 点击三个选项回到顶部
+      this.$refs.scroll.scrollTo(0,-this.tabControlHeight,200)
       this.$refs.tabcontrol1.currentIndex=index;
       this.$refs.tabcontrol2.currentIndex=index;
     },
+    
     contentScroll(position) {
       //1.决定backTop是否显示
       this.isShowBackTop = -position.y > 1000;
@@ -150,38 +153,33 @@ export default {
     }
   },
   computed: {
-    showGoods() {
+    showGoods() {      
       console.log("选中的类型", this.currentType);
       return this.goods[this.currentType].list;
     }
   },
-  activated(){  
-    //离开记录home页面位置消息，scroll将bug已解决
-    this.$refs.scroll.scrollTo(0,this.saveY,0);//迅速回到原来位置
-    this.$refs.scroll.refresh()
-    console.log(this.saveY);
-  },
-  deactivated(){
-    this.saveY = this.$refs.scroll.scroll.y;
-    console.log('离开Y位置',this.saveY);
-  }
+  //better-scroll 2.0 自带此功能
+  // activated(){  
+  //   //离开记录home页面位置消息，scroll将bug已解决
+  //   this.$refs.scroll.scrollTo(0,this.saveY,0);//迅速回到原来位置
+  //   this.$refs.scroll.refresh()
+  //   console.log(this.saveY);
+  // },
+  // deactivated(){
+  //   this.saveY = this.$refs.scroll.scroll.y;
+  //   console.log('离开Y位置',this.saveY);
+  // }
 };
 </script>
 
 <style scoped>
 #home {
-  /* padding-top: 44px; */
   height: 100vh;
   position: relative;
 }
 .home-nav {
   background-color: var(--color-tint);
   color: #fff;
-  /* position: fixed; scroll局部滚动对导航头无影响
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9; */
 }
 .content {
   overflow: hidden;

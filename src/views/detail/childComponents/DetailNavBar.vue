@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar>
+    <nav-bar >
       <div slot="left" class="back" @click="back">
         <img src="~assets/img/common/back.svg" alt="">
       </div>
@@ -33,12 +33,14 @@ export default {
     },
     back(){
       this.$router.go(-1);
+      // 使用事件 父组件接收 scrollTO 跳到那个位置 是吗老哥
     }
   },
   
 };
 </script>
 <style  scoped>
+
 .title {
   display: flex;
 }
@@ -50,6 +52,6 @@ export default {
   color: var(--color-high-text);
 }
 .back{
-  margin-top: 10px;
+  margin-top: 8px;
 }
 </style>
